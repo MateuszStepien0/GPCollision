@@ -16,19 +16,20 @@ public:
 	AnimatedSprite(const Texture&, const IntRect&);
 	~AnimatedSprite();
 
-	const Clock& getClock();
-	const Time& getTime();
-	const vector<IntRect>& getFrames();
-	const IntRect& getFrame(int);
 	void addFrame(IntRect&);
-	const int getCurrentFrame();
+	const sf::IntRect getCurrentFrame();
+	void setFrameRow(int frameRow);
+	void setFrameCol(int frameCol);
 	void update();
-	
+	void setCurrentFrame();
+
 private:
 	Clock m_clock;
 	Time m_time;
 	vector<IntRect> m_frames;
-	unsigned int m_current_frame;
+	sf::IntRect m_current_frame;
+	int m_current_frame_row;
+	int m_current_frame_col;
 };
 
 #endif // !ANIMATED_SPRITE_H

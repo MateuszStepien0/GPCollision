@@ -21,8 +21,7 @@ NPC::~NPC()
 
 AnimatedSprite& NPC::getAnimatedSprite()
 {
-	int frame = m_animated_sprite.getCurrentFrame();
-	m_animated_sprite.setTextureRect(m_animated_sprite.getFrame(frame));
+	m_animated_sprite.setTextureRect(m_animated_sprite.getCurrentFrame());
 	return m_animated_sprite;
 }
 
@@ -32,21 +31,17 @@ void NPC::handleInput(Input in)
 
 	switch (in.getCurrent())
 	{
-	case Input::Action::IDLE:
-		//std::cout << "Player Idling" << std::endl;
-		m_player_fsm.idle();
+	case Input::Action::SQUARE:
+		m_animated_sprite.setFrameRow(0);
 		break;
-	case Input::Action::UP:
-		//std::cout << "Player Up" << std::endl;
-		m_player_fsm.climbing();
+	case Input::Action::CIRCLE:
+		m_animated_sprite.setFrameRow(1);
 		break;
-	case Input::Action::LEFT:
-		//std::cout << "Player Left" << std::endl;
-		m_player_fsm.jumping();
+	case Input::Action::POLY:
+		m_animated_sprite.setFrameRow(2);
 		break;
-	case Input::Action::RIGHT:
-		//std::cout << "Player Idling" << std::endl;
-		m_player_fsm.jumping();
+	case Input::Action::CAPSULE:
+		m_animated_sprite.setFrameRow(3);
 		break;
 	default:
 		break;
